@@ -4,29 +4,27 @@ namespace ConverterHelper
 {
     public static class ExtensionsMethods
     {
-        #region ConvertToOrDefault
-
         /// <summary>
-        /// Try convert to type specified in <typeparamref name="T"/>.
-        /// If <typeparamref name="T"/> is <see cref="System.IConvertible"/>, the <see cref="System.Convert.ChangeType(System.Object, System.Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
-        /// if <typeparamref name="T"/> is <see cref="System.Enum"/>, <see cref="Enum.Parse(System.Type, System.String)">Enum.Parse(System.Type, System.String)</see> method is used, 
+        /// Try to convert to the type specified in <typeparamref name="T"/>.
+        /// If <typeparamref name="T"/> is <see cref="IConvertible"/>, the <see cref="Convert.ChangeType(Object, Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
+        /// if <typeparamref name="T"/> is <see cref="Enum"/>, <see cref="Enum.Parse(Type, String)">Enum.Parse(System.Type, System.String)</see> method is used, 
         /// else a simple cast is performed.
-        /// Case a error happen, the <c>default(<typeparamref name="T"/>)</c> is returned.
+        /// If an error occurs, the <c>default(<typeparamref name="T"/>)</c> is returned.
         /// <para>
-        /// <see cref="System.Nullable"/> types are supported.
+        /// <see cref="Nullable"/> types are supported.
         /// </para>
         /// </summary>
-        /// <typeparam name="T">Type to convert and return.</typeparam>
-        /// <param name="predicate">Obejct to convert.</param>
-        /// <returns><paramref name="predicate"/> converted to type defined by <typeparamref name="T"/> or a value specified in <paramref name="defualtValue"/>.</returns>
+        /// <typeparam name="T">Type to be converted and returned.</typeparam>
+        /// <param name="predicate">Object to be converted.</param>
+        /// <returns>The <paramref name="predicate"/> converted to the type defined by <typeparamref name="T"/>, or the default value of <typeparamref name="T"/>.</returns>
         /// <example>
         /// <code>
         /// class TestClass 
         /// {
         ///     public bool GetValueFromSession()
         ///     {
-        ///         // Try convert the variable 'MyVar' in the session to a bool value. 
-        ///         // Case a error occur return true
+        ///         // Try to convert the variable 'MyVar' into the session to a bool value. 
+        ///         // In case of an error occurs, returns true
         ///         return System.Web.HttpContext.Current.Session["MyVar"].ConvertToOrDefault&lt;bool&gt;(true);
         ///     }
         /// }
@@ -34,35 +32,36 @@ namespace ConverterHelper
         /// </example>
         public static T ConvertToOrDefault<T>(this object predicate)
         {
-            return ExtensionsMethods.ConvertToOrDefault<T>(predicate, default(T));
+            return ConvertToOrDefault(predicate, default(T));
         }
 
         /// <summary>
-        /// Try convert to type specified in <typeparamref name="T"/>.
-        /// If <typeparamref name="T"/> is <see cref="System.IConvertible"/>, the <see cref="System.Convert.ChangeType(System.Object, System.Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
-        /// if <typeparamref name="T"/> is <see cref="System.Enum"/>, <see cref="Enum.Parse(System.Type, System.String)">Enum.Parse(System.Type, System.String)</see> method is used, 
+        /// Try to convert to the type specified in <typeparamref name="T"/>.
+        /// If <typeparamref name="T"/> is <see cref="IConvertible"/>, the <see cref="Convert.ChangeType(Object, Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
+        /// if <typeparamref name="T"/> is <see cref="Enum"/>, <see cref="Enum.Parse(Type, String)">Enum.Parse(System.Type, System.String)</see> method is used, 
         /// else a simple cast is performed.
-        /// Case a error happen, the <c>default(<typeparamref name="T"/>)</c> is returned.
+        /// If an error occurs, the <c>default(<typeparamref name="T"/>)</c> is returned.
         /// <para>
-        /// <see cref="System.Nullable"/> types are supported.
+        /// <see cref="Nullable"/> types are supported.
         /// </para>
         /// </summary>
-        /// <typeparam name="T">Type to convert and return.</typeparam>
-        /// <param name="predicate">Obejct to convert.</param>
-        /// <see cref="System.IFormatProvider"/> that control the formatting.
+        /// <typeparam name="T">Type to be converted and returned.</typeparam>
+        /// <param name="predicate">Object to be converted.</param>
+        /// <param name="formatProvider">
+        /// <see cref="IFormatProvider"/> that control the formatting.
         /// <para>
-        /// This parameter is used only for conversions where target type is a type that inherit from <see cref="System.IConvertible"/>.
+        /// This parameter is used only for conversions where the target type inherits from <see cref="IConvertible"/>.
         /// </para>
         /// </param>
-        /// <returns><paramref name="predicate"/> converted to type defined by <typeparamref name="T"/> or a value specified in <paramref name="defualtValue"/>.</returns>
+        /// <returns>The <paramref name="predicate"/> converted to the type defined by <typeparamref name="T"/>, or the default value of <typeparamref name="T"/>.</returns>
         /// <example>
         /// <code>
         /// class TestClass 
         /// {
         ///     public bool GetValueFromSession()
         ///     {
-        ///         // Try convert the variable 'MyVar' in the session to a bool value. 
-        ///         // Case a error occur return true
+        ///         // Try to convert the variable 'MyVar' into the session to a bool value. 
+        ///         // In case of an error occurs, returns true
         ///         return System.Web.HttpContext.Current.Session["MyVar"].ConvertToOrDefault&lt;bool&gt;(true);
         ///     }
         /// }
@@ -70,31 +69,31 @@ namespace ConverterHelper
         /// </example>
         public static T ConvertToOrDefault<T>(this object predicate, IFormatProvider formatProvider)
         {
-            return ExtensionsMethods.ConvertToOrDefault<T>(predicate, default(T), formatProvider);
+            return ConvertToOrDefault(predicate, default(T), formatProvider);
         }
 
         /// <summary>
-        /// Try convert to type specified in <typeparamref name="T"/>.
-        /// If <typeparamref name="T"/> is <see cref="System.IConvertible"/>, the <see cref="System.Convert.ChangeType(System.Object, System.Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
-        /// if <typeparamref name="T"/> is <see cref="System.Enum"/>, <see cref="Enum.Parse(System.Type, System.String)">Enum.Parse(System.Type, System.String)</see> method is used, 
+        /// Try to convert to the type specified in <typeparamref name="T"/>.
+        /// If <typeparamref name="T"/> is <see cref="IConvertible"/>, the <see cref="Convert.ChangeType(Object, Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
+        /// if <typeparamref name="T"/> is <see cref="Enum"/>, <see cref="Enum.Parse(Type, String)">Enum.Parse(System.Type, System.String)</see> method is used, 
         /// else a simple cast is performed.
-        /// Case a error happen, the <paramref name="defualtValue"/> is returned.
+        /// Case a error happen, the <paramref name="defaultValue"/> is returned.
         /// <para>
-        /// <see cref="System.Nullable"/> types are supported.
+        /// <see cref="Nullable"/> types are supported.
         /// </para>
         /// </summary>
-        /// <typeparam name="T">Type to convert and return.</typeparam>
-        /// <param name="predicate">Obejct to convert.</param>
-        /// <param name="defaultValue">Value to return case a error happen.</param>
-        /// <returns><paramref name="predicate"/> converted to type defined by <typeparamref name="T"/> or a value specified in <paramref name="defualtValue"/>.</returns>
+        /// <typeparam name="T">Type to be converted and returned.</typeparam>
+        /// <param name="predicate">Object to be converted.</param>
+        /// <param name="defaultValue">Value to be returned in case of an error happen.</param>
+        /// <returns>The <paramref name="predicate"/> converted to the type defined by <typeparamref name="T"/>, or the value specified in <paramref name="defaultValue"/>.</returns>
         /// <example>
         /// <code>
         /// class TestClass 
         ///{
         ///     public bool GetValueFromSession()
         ///     {
-        ///         // Try convert the variable 'MyVar' in the session to a bool value. 
-        ///         // Case a error occur return true
+        ///         // Try to convert the variable 'MyVar' into the session to a bool value. 
+        ///         // In case of an error occurs, returns true
         ///         return System.Web.HttpContext.Current.Session["MyVar"].ConvertToOrDefault&lt;bool&gt;(true);
         ///     }
         ///}
@@ -102,37 +101,37 @@ namespace ConverterHelper
         /// </example>
         public static T ConvertToOrDefault<T>(this object predicate, T defaultValue)
         {
-            return ExtensionsMethods.ConvertToOrDefault<T>(predicate, defaultValue, null);
+            return ConvertToOrDefault(predicate, defaultValue, null);
         }
 
         /// <summary>
-        /// Try convert to type specified in <typeparamref name="T"/>.
-        /// If <typeparamref name="T"/> is <see cref="System.IConvertible"/>, the <see cref="System.Convert.ChangeType(System.Object, System.Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
-        /// if <typeparamref name="T"/> is <see cref="System.Enum"/>, <see cref="Enum.Parse(System.Type, System.String)">Enum.Parse(System.Type, System.String)</see> method is used, 
+        /// Try to convert to the type specified in <typeparamref name="T"/>.
+        /// If <typeparamref name="T"/> is <see cref="IConvertible"/>, the <see cref="Convert.ChangeType(Object, Type)">Convert.ChangeType(System.Object, System.Type)</see> method is used, else
+        /// if <typeparamref name="T"/> is <see cref="Enum"/>, <see cref="Enum.Parse(Type, String)">Enum.Parse(System.Type, System.String)</see> method is used, 
         /// else a simple cast is performed.
-        /// Case a error happen, the <paramref name="defualtValue"/> is returned.
+        /// Case a error happen, the <paramref name="defaultValue"/> is returned.
         /// <para>
-        /// <see cref="System.Nullable"/> types are supported.
+        /// <see cref="Nullable"/> types are supported.
         /// </para>
         /// </summary>
-        /// <typeparam name="T">Type to convert and return.</typeparam>
-        /// <param name="predicate">Obejct to convert.</param>
-        /// <param name="defaultValue">Value to return case a error happen.</param>
+        /// <typeparam name="T">Type to be converted and returned.</typeparam>
+        /// <param name="predicate">Object to be converted.</param>
+        /// <param name="defaultValue">Value to be returned in case of an error happen.</param>
         /// <param name="formatProvider">
-        /// <see cref="System.IFormatProvider"/> that control the formatting.
+        /// <see cref="IFormatProvider"/> that control the formatting.
         /// <para>
-        /// This parameter is used only for conversions where target type is a type that inherit from <see cref="System.IConvertible"/>.
+        /// This parameter is only used for conversions where the target type inherits from <see cref="IConvertible"/>.
         /// </para>
         /// </param>
-        /// <returns><paramref name="predicate"/> converted to type defined by <typeparamref name="T"/> or a value specified in <paramref name="defualtValue"/>.</returns>
+        /// <returns>The <paramref name="predicate"/> converted to the type defined by <typeparamref name="T"/>, or the value specified in <paramref name="defaultValue"/>.</returns>
         /// <example>
         /// <code>
         /// class TestClass 
         ///{
         ///     public bool GetValueFromSession()
         ///     {
-        ///         // Try convert the variable 'MyVar' in the session to a bool value. 
-        ///         // Case a error occur return true
+        ///         // Try to convert the variable 'MyVar' into the session to a bool value. 
+        ///         // In case of an error occurs, returns true
         ///         return System.Web.HttpContext.Current.Session["MyVar"].ConvertToOrDefault&lt;bool&gt;(true);
         ///     }
         ///}
@@ -156,8 +155,8 @@ namespace ConverterHelper
 
                     if (type.IsEnum)
                     {
-                        // Caso o array possua o atributo Flags, então a soma binária de dois ou mais
-                        // elementos desse enum pode gerar um valor que o método Enum.IsDefined não identificaria.
+                        // if the array has the Flags attribute,the binary sum of two or more
+                        // elements of this enum might generate a value which the method Enum.IsDefined is not able to evaluated.
                         object[] flagsAttributes = type.GetCustomAttributes(typeof(FlagsAttribute), false);
                         if (flagsAttributes.Length > 0)
                         {
@@ -165,7 +164,7 @@ namespace ConverterHelper
                         }
                         else
                         {
-                            // Caso o enum não possua o atributo Flags, então verifica se o valor está definido.
+                            // If the enum does not have the Flags attribute, the defined value is evaluated.
                             if (Enum.IsDefined(type, predicate))
                             {
                                 return (T)Enum.Parse(type, predicate.ToString());
@@ -192,35 +191,23 @@ namespace ConverterHelper
             }
         }
 
-        #endregion
-
-        #region IsNullable
-
         /// <summary>
-        /// Verifica se um <see cref="System.Type"/> é um System.Nullable
+        /// Check if the <see cref="Type"/> is System.Nullable.
         /// </summary>
-        /// <returns>True se o objeto for System.Nullable.</returns>
-        /// <remarks>
-        /// Andrew B. Signori   25/03/2008
-        /// </remarks>
+        /// <returns>True if the object is System.Nullable.</returns>
         public static bool IsNullable(this Type type)
         {
             return (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
 
-        #endregion
-
-        #region IsConvertible
-
         /// <summary>
-        /// Indica se um <see cref="System.Type"/> implementa a interface <see cref="System.IConvertible"/>.
+        /// Check if <see cref="Type"/> implements the interface <see cref="IConvertible"/>.
         /// </summary>
-        /// <param name="type">Tipo a ser verificado.</param>
-        /// <returns>True se implementa.</returns>
+        /// <param name="type">Type to be checked.</param>
+        /// <returns>True if it is an implementation of <see cref="IConvertible"/>.</returns>
         public static bool IsConvertible(this Type type)
         {
-            return type.GetInterface("IConvertible") != null;
+            return type.GetInterface(nameof(IConvertible)) != null;
         }
-        #endregion
     }
 }
