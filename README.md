@@ -4,3 +4,6 @@ Helper for easy and elegant type conversions, taking care of: nullables, enums, 
 
 ## Example:
 int converted = someObject.ConvertToOrDefault<int>(-1);
+
+## Nuget:
+https://www.nuget.org/packages/ConverterHelper/
