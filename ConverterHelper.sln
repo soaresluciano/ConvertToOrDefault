@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterHelper", "ConverterHelper\ConverterHelper.csproj", "{4A60D71B-E76A-4C32-A294-1BA5FDA5FF9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConverterHelper", "ConverterHelper\ConverterHelper.csproj", "{4A60D71B-E76A-4C32-A294-1BA5FDA5FF9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterHelper.Tests", "ConverterHelper.Tests\ConverterHelper.Tests.csproj", "{AC7491D2-2597-4199-B65E-4163B8AA6AAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4A60D71B-E76A-4C32-A294-1BA5FDA5FF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A60D71B-E76A-4C32-A294-1BA5FDA5FF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A60D71B-E76A-4C32-A294-1BA5FDA5FF9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7491D2-2597-4199-B65E-4163B8AA6AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7491D2-2597-4199-B65E-4163B8AA6AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7491D2-2597-4199-B65E-4163B8AA6AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7491D2-2597-4199-B65E-4163B8AA6AAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
